@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Generator</title>
+    <%= render :partial => "dashboard/include" %>
+  </head>
+
+  <body class='bg-dark'>
+    <%= render :partial => "dashboard/nav" %>
+    <div class='container text-white'>
+      <h1>Random Generator</h1>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label > First Name: </label> 
+          <input type="text" class="form-control" value="<%= @fName %>" readonly>
+          
+        </div>
+        <div class="form-group col-md-6">
+          <label > Last Name: </label> 
+          <input type="text" class="form-control" value="<%= @lName %>" readonly>
+        </div>
+      </div>
+      <div class="form-group">
+        <label >Location</label>
+        <input type="text" class="form-control" value="<%= @place %>" readonly>
+      </div>
+      <div class="form-group">
+        <label >Terrain</label>
+        <input type="text" class="form-control" value="<%= @terrain %>" readonly>
+      </div>
+      <div class="form-group">
+        <label >Landmark</label>
+        <textarea class="form-control md-textarea" readonly><%= @landmark %></textarea>
+      </div>
+      <input type="button" class="btn btn-primary" value="Generate" onclick='location.reload()'>
+    </div>
+  </body>
+</html>

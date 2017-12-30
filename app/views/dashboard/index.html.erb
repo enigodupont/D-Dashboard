@@ -5,16 +5,63 @@
     <%= render :partial => "dashboard/include" %>
   </head>
 
-  <body>
+  <body class="bg-secondary">
     <%= render :partial => "dashboard/nav" %>
 
-    <table class="table table-dark">
+    <table class="table table-dark table-bordered text-center">
       <tbody>
         <tr>
-          <td> Quest Logger </td>
-          <td> Dice Roller </td>
+          <td> 
+            <div class="jumbotron jumbotron-fluid bg-success" >
+              <h1 class="display-3 text-center" id='QuestLogger' onmouseover='flash(this,true);' onmouseout='flash(this,false);'>Quest Logger!</h1>
+            </div>
+          </td>
+          <td> 
+            <div class="jumbotron jumbotron-fluid bg-success" >
+              <h1 class="display-3 text-center"><a href='/random_generator' id='RandomGenerator' onmouseover='flash(this,true);' onmouseout='flash(this,false);'>Random Generator!</a></h1>
+            </div>
+          </td>
+        </tr>
+        <tr>
+         <td> 
+            <div class="jumbotron jumbotron-fluid bg-warning">
+              <h1 class="display-3 text-center">Coming Soon!</h1>
+            </div>
+          </td>
+          <td> 
+            <div class="jumbotron jumbotron-fluid bg-warning">
+              <h1 class="display-3 text-center">Coming Soon!</h1>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
   </body>
 </html>
+
+<script>
+
+flashIds = [];
+flashNames = [];
+function flash(e,toFlash){
+  flashTime = 400;
+  if(toFlash && ($.inArray(e.id, flashNames) == -1)){
+    console.log("in " + e.id);
+    $(e).fadeOut(flashTime).fadeIn(flashTime);
+    flashNames.push(e.id);
+    id = setInterval(function(){
+      $(e).fadeOut(flashTime).fadeIn(flashTime);
+    },25);
+    flashIds.push(id);
+  }else{
+    console.log("out " + e.id);
+    flashNames.splice($.inArray(e.id, flashNames),1);
+    for( id in flashIds){
+      clearInterval(flashIds[id]);
+    }
+    flashIds = [];
+    $(e).stop(true).fadeIn(flashTime);
+  }
+}
+
+</script>

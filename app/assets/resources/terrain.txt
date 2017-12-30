@@ -1,0 +1,16 @@
+OPEN - Flat open grasslands
+TUNDRA - Flat and icy wasteland
+OASIS - Flat desert area near water
+STEPPE - Cold desert
+HILL - Gently rising ground
+DESERT - Arid sandy ground
+MOUNTAIN - Steeply rising rocky ground
+FOREST - Heavily wooded area
+MARSH - Wet, soft ground
+BOG - Spongy, sinking ground
+SWAMP - Very wet, muddy ground
+RIVER - Broad area of running water
+FORT A - Large walled city
+FORT B - Small city with pallisades
+SHALLOW OCEAN - Water
+DEEP OCEAN - Lots more water

@@ -5,8 +5,9 @@
     <%= render :partial => "dashboard/include" %>
   </head>
 
-  <body>
+  <body class='bg-dark'>
     <%= render :partial => "dashboard/nav" %>
+      <div class='container text-white'>
         <h1>Sign Up</h1>
         <%= form_for(:user, :url => {:controller => 'users', :action => 'create'}) do |f| %>
           <div class="form-group">
@@ -28,14 +29,15 @@
           </div>
           <input class="btn btn-primary" type="submit" name="commit" value="Signup" data-disable-with="Signup">
         <% end %>
-        
-
-        <% if @user.errors.any? %>
+         <% if @user.errors.any? %>
           <ul class="Signup_Errors">
           <% for message_error in @user.errors.full_messages %>
             <li>* <%= message_error %></li>
           <% end %>
           </ul>
         <% end %>
+      </div>
+
+       
   </body>
 </html

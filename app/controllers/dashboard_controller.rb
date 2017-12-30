@@ -1,5 +1,9 @@
 class DashboardController < ApplicationController
   def index
-    @test = "test"
+    
+  end
+
+  def aboutus
+    
   end
 end

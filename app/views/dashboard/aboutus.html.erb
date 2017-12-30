@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>D&Dashboard</title>
+    <%= render :partial => "dashboard/include" %>
+  </head>
+
+  <body class="bg-secondary">
+    <%= render :partial => "dashboard/nav" %>
+
+    <table class="table table-dark bg-dark text-white">
+      <tbody>
+        <tr>
+          <td> 
+            <div class="jumbotron jumbotron-fluid bg-dark">
+              <img src="<%= asset_path 'Jc.jpg' %>" class="rounded img-fluid" alt="Responsive image">
+              <h1 class="display-3 text-center">Juan Carlos Ramirez!</h1>
+              <ul class="list-group ">
+                <li class="list-group-item bg-secondary"> 
+                    DevOps Engineer in the Accenture Austin Delivery Center
+                </li>
+                <li class="list-group-item"> 
+                    <a class="github-button" href="https://github.com/jc6482" data-size="large" data-show-count="true" aria-label="Follow @jc6482 on GitHub">Follow @jc6482</a>
+                </li>
+                </ul>
+            </div>
+          </td>
+          <td> 
+            <div class="jumbotron jumbotron-fluid bg-dark ">
+              <img src="<%= asset_path 'Marvin.jpg' %>" class="rounded img-fluid" alt="Responsive image">
+              <h1 class="display-3 text-center">Marvin Leister!</h1>
+              <ul class="list-group ">
+                <li class="list-group-item bg-secondary"> 
+                    Systems Administrator in Aransas Pass, TX
+                </li>
+                <li class="list-group-item"> 
+                    <a class="github-button" href="https://github.com/Luddha" data-size="large" data-show-count="true" aria-label="Follow @Luddha on GitHub">Follow @Luddha</a>
+                </li>
+            </ul>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+
