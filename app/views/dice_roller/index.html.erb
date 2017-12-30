@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dice Roller</title>
+    <%= render :partial => "dashboard/include" %>
+  </head>
+
+  <body class="bg-secondary">
+    <%= render :partial => "dashboard/nav" %>
+    <div class="table-responsive" >
+      <table class="table table-dark table-hover table-bordered table-striped text-center " >
+        <thead>
+          <tr>
+            <th> Number of Dice </th>
+            <th> </th>
+            <th> Dice Value </th>
+            <th> Modifier </th>
+            <th> Modifier per Roll? </th>
+            <th> Result </th>
+            <th> Calculate </th>
+          </tr>
+        <tbody>
+          <%= createRoller(2,@maxModifier).html_safe %>
+          <%= createRoller(4,@maxModifier).html_safe %>
+          <%= createRoller(6,@maxModifier).html_safe %>
+          <%= createRoller(8,@maxModifier).html_safe %>
+          <%= createRoller(10,@maxModifier).html_safe %>
+          <%= createRoller(20,@maxModifier).html_safe %>
+          <%= createRoller(100,@maxModifier).html_safe %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+
+<script>
+  function runDice(e){
+
+    myDieRow = e.parentElement.parentElement;
+    myDieNum = myDieRow.children[0].children[0].value;
+    myDieVal = myDieRow.children[2].innerText;
+    myDieMod = myDieRow.children[3].children[0].value;
+    perRoll = myDieRow.children[4].children[0].checked;
+    myDieRes = myDieRow.children[5];
+    $(myDieRes).filter(":not(:animated)").fadeOut();
+    res = 0;
+    
+    for(i = 0; i < myDieNum; i++){
+      res += Math.round(Math.random() * 100 % myDieVal);
+      if(perRoll){
+        res += Number(myDieMod);
+      }
+    }
+
+    if(!perRoll){
+      res += Number(myDieMod);
+    }
+
+    myDieRes.innerText = res;
+    $(myDieRes).fadeIn();
+  }
+</script>

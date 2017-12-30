@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   get 'users/create'
   post 'users/create'
 
+  get 'dice_roller', to: 'dice_roller#index'
   
 end
