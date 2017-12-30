@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get 'users/create'
   post 'users/create'
 
-  get 'dice_roller', to: 'dice_roller#index'
+  get 'dice_roller', to: 'utility#diceRoller'
+  get 'levelCalculator', to: 'utility#levelCalculator'
 
   get 'random_generator', to: 'random_generator#index'
   

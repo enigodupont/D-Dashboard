@@ -10,14 +10,18 @@
     <div class='container text-white'>
       <h1>Random Generator</h1>
       <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label > First Name: </label> 
           <input type="text" class="form-control" value="<%= @fName %>" readonly>
           
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label > Last Name: </label> 
           <input type="text" class="form-control" value="<%= @lName %>" readonly>
+        </div>
+        <div class="form-group col-md-4">
+          <label > Last Alignment: </label> 
+          <input type="text" class="form-control" value="<%= @alignment %>" readonly>
         </div>
       </div>
       <div class="form-row">
@@ -35,8 +39,16 @@
         <textarea class="form-control md-textarea" readonly><%= @landmark %></textarea>
       </div>
       <div class="form-group">
+        <label>Monsters</label>
+    <% @monsters.each do |i| %>
+        <input type="text" class="form-control" value="<%= i %>" readonly>
+    <% end %>
+      </div>
+      <div class="form-group">
         <label>Item</label>
-        <input type="text" class="form-control" value="<%= @item %>" readonly>
+    <% @items.each do |i| %>
+        <input type="text" class="form-control" value="<%= i %>" readonly>
+    <% end %>
       </div>
       <input type="button" class="btn btn-primary" value="Generate" onclick='location.reload()'>
     </div>

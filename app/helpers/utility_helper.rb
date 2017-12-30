@@ -1,4 +1,4 @@
-module DiceRollerHelper
+module UtilityHelper
     def createRoller(value, mod)
         html = "<tr>"
         html += "  <td> <input value='1'/> </td>"

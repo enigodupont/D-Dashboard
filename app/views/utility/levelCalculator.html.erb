@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dice Roller</title>
+    <%= render :partial => "dashboard/include" %>
+  </head>
+
+  <body class="bg-dark">
+    <%= render :partial => "dashboard/nav" %>
+      <div class='container text-white'>
+            <h1>Level/EXP Calculator</h1>
+              <div class="form-group">
+                <label>Get EXP for Level: </label>
+                <div class="form-row">
+                  <input class="form-control col-md-6" type="text" id="level"  placeholder="Enter level">
+                  <input class="form-control col-md-6" type="text" id="exp4level"  readonly>
+                </div>
+                <input type="button" class="btn btn-primary" value="Get EXP" onclick="getLvl()">
+              </div>
+              <div class="form-group">
+                <label>Get Level for EXP: </label>
+                <div class="form-row">
+                  <input type="text" class="form-control col-md-6"  id="exp" placeholder="Enter EXP">
+                  <input class="form-control col-md-6" type="text" id="level4exp"  readonly>
+                </div>
+                <input type="button" class="btn btn-primary" value="Get Level" onclick="getEXP()">
+              </div>
+        </div>
+  </body>
+</html>
+
+<script>
+  function getLvl(){
+    lvl = Number($("#level").val());
+    expNeeded = 0;
+    for(i = 1; i < (lvl+1); i++){
+      expNeeded += (i-1)*1000;
+    }
+    $("#exp4level").val(expNeeded);
+  }
+
+  function getEXP(){
+    exp = Number($("#exp").val());
+    level = 1;
+    expNeeded = 0;
+    while(true){
+      expNeeded += (level-1)*1000;
+    
+      if(expNeeded > exp){
+        $("#level4exp").val(level-1);
+        break;
+      }else if(expNeeded == exp){
+        $("#level4exp").val(level);
+        break;
+      }
+
+      level++
+    }
+  }
+</script>
