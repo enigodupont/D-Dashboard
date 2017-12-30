@@ -7,6 +7,7 @@ class RandomGeneratorController < ApplicationController
         @place = pick_random_line("./app/assets/resources/places.txt")
         @terrain = pick_random_line("./app/assets/resources/terrain.txt")
         @landmark = pick_random_line("./app/assets/resources/landmarks.txt")
+        @item = pick_random_line("./app/assets/resources/items.txt")
     end
 
    

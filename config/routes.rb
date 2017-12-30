@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  post 'sessions/create'
-  get 'dashboard/dashboard'
-  delete 'sessions/destroy'
-
   root 'dashboard#index'
+
+
   get 'aboutus', to: 'dashboard#aboutus'
 
+  get 'users/login'
+  post 'users/createLogin'
+  get 'users/destroyLogin'
   get 'users/register'
   get 'users/create'
   post 'users/create'
