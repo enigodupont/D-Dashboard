@@ -46,7 +46,7 @@
     res = 0;
     
     for(i = 0; i < myDieNum; i++){
-      res += Math.round(Math.random() * 100 % myDieVal);
+      res += Math.ceil(Math.random() * 100 % myDieVal);
       if(perRoll){
         res += Number(myDieMod);
       }
