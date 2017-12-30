@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <%= render :partial => "dashboard/include" %>
+  </head>
+
+  <body>
+    <%= render :partial => "dashboard/nav" %>
+    
+    Welcome <%= current_user[:username] %>
+
+    <%= link_to "Log Out", :controller => 'sessions', :action => 'new' %>
+        
+  </body>
+</html>
