@@ -17,6 +17,14 @@ Rails.application.routes.draw do
   get 'random_generator', to: 'random_generator#index'
 
   get 'inventory/BOH'
-  post 'inventory/BOH'
+
+  get 'inventory/createBOH'
+  post 'inventory/createBOH'
+
+  get 'inventory/newBOH'
+  post 'inventory/newBOH'
+
+  get 'inventory/showBOHs'
+  post 'inventory/showBOHs'
   
 end

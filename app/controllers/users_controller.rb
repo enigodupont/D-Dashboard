@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   def register
+    if !session[:user].nil? and !session[:user]['username'].nil?
+      redirect_to root_url
+    end
     @user = User.new
   end
 
@@ -18,7 +21,9 @@ class UsersController < ApplicationController
   end
 
   def login
-    
+    if !session[:user].nil? and !session[:user]['username'].nil?
+      redirect_to root_url
+    end
   end
 
   def createLogin
