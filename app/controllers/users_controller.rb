@@ -21,10 +21,10 @@ class UsersController < ApplicationController
   end
 
   def createLogin
-    @user = User.find_by(email: user_params[:email])
+    @user = User.find_by(username: user_params[:username])
     if @user.present? && @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
-      session[:username] = User.find_by(id: session[:user_id])[:username]
+      session[:user] = @user
       redirect_to root_url
     else
       flash[:danger] = "Invalid email/password"
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   def destroyLogin
     session[:user_id] = nil
-    session[:username] = nil
+    session[:user] = nil
     redirect_to root_url
   end
 
