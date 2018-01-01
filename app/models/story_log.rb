@@ -1,0 +1,2 @@
+class StoryLog < ApplicationRecord
+end
