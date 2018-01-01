@@ -15,5 +15,8 @@ Rails.application.routes.draw do
   get 'levelCalculator', to: 'utility#levelCalculator'
 
   get 'random_generator', to: 'random_generator#index'
+
+  get 'inventory/BOH'
+  post 'inventory/BOH'
   
 end

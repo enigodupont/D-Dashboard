@@ -5,7 +5,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav">
-    <% if session[:username].nil? %>
+    <% if session[:user].nil? or session[:user]['username'].nil? %>
       <li class="nav-item active">
         <a class="nav-link" href="/users/register"> Register <span class="sr-only">(current)</span></a>
       </li>
@@ -14,7 +14,7 @@
       </li>
     <% else %>
        <li class="nav-item active">
-        <a class="nav-link" href="#"> <%= session[:username] %> <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#"> <%= session[:user]['username'] %> <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="/users/destroyLogin"> Log Out <span class="sr-only">(current)</span></a>

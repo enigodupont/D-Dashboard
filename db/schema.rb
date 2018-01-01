@@ -10,14 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180101081448) do
+ActiveRecord::Schema.define(version: 20180101000001) do
 
-  create_table "story_logs", force: :cascade do |t|
+  create_table "bag_of_holding", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name"
-    t.text "body"
-    t.integer "dm"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bag_of_holding_on_user_id"
+  end
+
+  create_table "inventory", force: :cascade do |t|
+    t.integer "bag_id"
+    t.string "itemName"
+    t.integer "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bag_id"], name: "index_inventory_on_bag_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -6,14 +6,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "Register Succesful"
-      flash[:color] = "valid"
+      session[:user_id] = @user.id
+      session[:user] = @user
+      redirect_to root_url
     else
       flash[:notice] = "Register Failed"
       flash[:color] = "invalid"
+      render "register"
     end
 
-    render "register"
   end
 
   def login
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
       redirect_to root_url
     else
       flash[:danger] = "Invalid email/password"
-      render "new"
+      render "login"
     end
 
   end
