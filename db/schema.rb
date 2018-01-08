@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180101000001) do
+ActiveRecord::Schema.define(version: 20180108061815) do
 
-  create_table "bag_of_holding", force: :cascade do |t|
+  create_table "bag_of_holdings", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_bag_of_holding_on_user_id"
+    t.index ["user_id"], name: "index_bag_of_holdings_on_user_id"
   end
 
   create_table "inventory", force: :cascade do |t|
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 20180101000001) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bag_id"], name: "index_inventory_on_bag_id"
+  end
+
+  create_table "quest_logs", force: :cascade do |t|
+    t.integer "dm_id"
+    t.string "title"
+    t.text "log"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dm_id"], name: "index_quest_logs_on_dm_id"
   end
 
   create_table "users", force: :cascade do |t|

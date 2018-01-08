@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class StoryLogTest < ActiveSupport::TestCase
+class QuestLogTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

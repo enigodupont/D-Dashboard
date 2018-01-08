@@ -1,0 +1,2 @@
+class QuestLoggerController < ApplicationController
+end

@@ -1,0 +1,2 @@
+module QuestLoggerHelper
+end
