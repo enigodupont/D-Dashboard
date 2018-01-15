@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       session[:user] = @user
       redirect_to root_url
     else
-      flash[:danger] = "Invalid email/password"
+      flash[:danger] = "Invalid username/password"
       render "login"
     end
 
