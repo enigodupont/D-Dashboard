@@ -11,8 +11,8 @@
             <h1>Login</h1>
             <%= form_for(:user, url: {:controller => 'users', :action => 'createLogin'}) do |f| %>
               <div class="form-group">
-                <label for="user_email">Email</label>
-                <input class="form-control" type="email" name="user[email]" id="user_email" aria-describedby="emailHelp" placeholder="Enter email">
+                <label for="user_username">Username</label>
+                <input class="form-control" type="text" name="user[username]" id="user_username" placeholder="Enter username">
               </div>
               <div class="form-group">
                 <label for="user_password">Password</label>
