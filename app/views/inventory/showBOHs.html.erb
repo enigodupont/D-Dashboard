@@ -8,27 +8,44 @@
   <body class="bg-dark">
     <%= render :partial => "dashboard/nav" %>
     <div class="table-responsive" >
-      <table class="table table-dark table-hover table-bordered table-striped text-center " >
+      <table class="table table-dark table-hover table-bordered text-center " >
         <thead>
           <tr>
             <th> Name </th>
             <th> Date Created </th>
             <th> Date Last Modified </th>
-            <th> Enter </th>
+            <th> Open Bag </th>
+            <th> Delete </th>
           </tr>
         <tbody>
-      <% @bohs.each do |x| %>
+      <% @bohs.each do |bag| %>
         <tr>
-          <td><%= x['name'] %></td>
-          <td><%= x['created_at'] %></td>
-          <td><%= x['updated_at'] %></td>
-          <td><a href='/inventory/checkBOH?name=<%= x['name'] %>'>Open BOH</a></td>
+          <td><%= bag['name'] %></td>
+          <td><%= bag['created_at'] %></td>
+          <td><%= bag['updated_at'] %></td>
+          <td><a class="btn btn-primary" role="button" href='/inventory/showInventory?id=<%= bag['id'] %>'>Open</a></td>
+          <td><a class="btn btn-primary" role="button" onclick='return confirmDelete("<%= bag['name'] %>");' href='/inventory/deleteBOH?id=<%= bag['id'] %>'>Delete</a></td>
         </tr>
       <% end %>
         </tbody>
       </table>
+      <% if !flash.nil? %>
+    <ul class="Signup_Errors">
+      <li>
+        <div class="<%=flash[:color] %>"><%= flash[:notice] %></div>
+      </li>
+    </ul>
+  <% end %>
     </div>
-    <a href='/inventory/newBOH'>Create a new BOH</a>
+    <a class="btn btn-primary btn-lg" role="button" href='/inventory/newBOH'>Create a new BOH</a>
   </body>
 </html>
+
+<script>
+
+        function confirmDelete(e){
+          return confirm("Are you sure you want to delete " + e + "?");
+        }
+
+</script>
 

@@ -9,4 +9,14 @@ module UtilityHelper
         html += "  <td> 0 </td>"
         html += "  <td> <input type='button' onclick='runDice(this);' value='Run Dice'/> </td>"
     end
+
+
+    def checkLogin
+        if session.nil? or session[:user].nil? or session[:user]['username'].nil?
+            redirect_to '/users/login'
+            return false
+        else 
+            return true
+        end
+    end
 end

@@ -20,13 +20,13 @@ ActiveRecord::Schema.define(version: 20180108061815) do
     t.index ["user_id"], name: "index_bag_of_holdings_on_user_id"
   end
 
-  create_table "inventory", force: :cascade do |t|
+  create_table "inventories", force: :cascade do |t|
     t.integer "bag_id"
     t.string "itemName"
     t.integer "weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bag_id"], name: "index_inventory_on_bag_id"
+    t.index ["bag_id"], name: "index_inventories_on_bag_id"
   end
 
   create_table "quest_logs", force: :cascade do |t|

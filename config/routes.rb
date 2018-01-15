@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'aboutus', to: 'dashboard#aboutus'
 
   get 'users/login'
+  get 'users/createLogin', to: 'users#login'
   post 'users/createLogin'
   get 'users/destroyLogin'
   get 'users/register'
@@ -27,4 +28,12 @@ Rails.application.routes.draw do
   get 'inventory/showBOHs'
   post 'inventory/showBOHs'
   
+  get 'inventory/deleteBOH'
+
+  get 'inventory/showInventory'
+
+  get 'inventory/deleteItem'
+
+  get 'inventory/newItem'
+  post 'inventory/createItem'
 end
