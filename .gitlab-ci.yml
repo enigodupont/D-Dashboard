@@ -1,0 +1,17 @@
+before_script:
+  - docker login -u="$GIT_USER" -p="$GIT_PASS"
+
+build_image:
+  script:
+    - "git clone https://$GIT_USER:$GIT_PASS@gitlab.theoldsystem.com/jc6482/theoldsystem-docker.git"
+    - "cd theoldsystem-docker/D-Dashboard"
+    - "./build.sh"
+    - "docker tag D-Dashboard:build jc6482/D-Dashboard:latest"
+    - "docker push jc6482/D-Dashboard:latest"
+    - "docker rmi -f D-Dashboard:build jc6482/D-Dashboard:latest || true"
+
+after_script:
+  - docker logout
+
+variables:
+  GIT_SSL_NO_VERIFY: "true"
