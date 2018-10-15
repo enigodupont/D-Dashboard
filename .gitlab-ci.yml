@@ -6,7 +6,7 @@ build_image:
     - "git clone https://$GIT_USER:$GIT_PASS@gitlab.theoldsystem.com/jc6482/theoldsystem-docker.git"
     - "cd theoldsystem-docker/D-Dashboard"
     - "./build.sh"
-    - "docker tag D-Dashboard:build jc6482/d-dashboard:latest"
+    - "docker tag d-dashboard:build jc6482/d-dashboard:latest"
     - "docker push jc6482/d-dashboard:latest"
     - "docker rmi -f d-dashboard:build jc6482/d-dashboard:latest || true"
 
