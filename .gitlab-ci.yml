@@ -1,18 +1,17 @@
-before_script:
-  - docker login -u="$GIT_USER" -p="$GIT_PASS"
-
 build_image:
   script:
+    - docker login -u="$GIT_USER" -p="$GIT_PASS"
     - "git clone https://$GIT_USER:$GIT_PASS@gitlab.theoldsystem.com/jc6482/theoldsystem-docker.git"
     - "cd theoldsystem-docker/D-Dashboard"
     - "./build.sh"
     - "docker tag d-dashboard:build jc6482/d-dashboard:latest"
     - "docker push jc6482/d-dashboard:latest"
     - "docker rmi -f d-dashboard:build jc6482/d-dashboard:latest || true"
+    - docker logout
 
-after_script:
-  - docker logout
-  - /opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=D-DASH -Dsonar.sources=. -Dsonar.host.url=http://10.64.0.5:9000 -Dsonar.login=$SONAR_TOKEN
+sonar_scan:
+  script:
+    - /opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=D-DASH -Dsonar.sources=theoldsystem-docker/D-Dashboard/D-Dashboard -Dsonar.host.url=http://10.64.0.5:9000 -Dsonar.login=$SONAR_TOKEN
 
 variables:
   GIT_SSL_NO_VERIFY: "true"
