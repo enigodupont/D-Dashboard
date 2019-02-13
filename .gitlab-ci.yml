@@ -9,4 +9,8 @@ build_image:
 
 sonar_scan:
   script:
-    - /opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=D-DASH -Dsonar.sources=. -Dsonar.host.url=http://10.64.0.5:9000 -Dsonar.login=$SONAR_TOKEN
+    - /opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=D-DASH -Dsonar.sources=. -Dsonar.host.url=http://10.64.0.5:30900 -Dsonar.login=$SONAR_TOKEN
+
+kube_deploy:
+  script:
+    - /usr/bin/kubectl apply -f deployment.yaml

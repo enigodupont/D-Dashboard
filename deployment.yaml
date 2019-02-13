@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: d-dashboard
+  namespace: tos
+  labels:
+    run: d-dashboard
+    namespace: tos
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: d-dashboard
+        namespace: tos
+    spec:
+      containers:
+      - name: d-dashboard
+        image: jc6482/d-dashboard
+        imagePullPolicy: Always 
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: d-dashboard
+  namespace: tos
+spec:
+  selector:
+    run: d-dashboard
+  ports:
+    - name: ui-port
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30000
+  type: NodePort
