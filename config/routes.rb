@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   get 'aboutus', to: 'dashboard#aboutus'
 
+  
+  get 'healthz', to: 'dashboard#healthz'
+
   get 'users/login'
   get 'users/createLogin', to: 'users#login'
   post 'users/createLogin'

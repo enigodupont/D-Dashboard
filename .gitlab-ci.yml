@@ -2,9 +2,9 @@ build_image:
   script:
     - docker login -u="$GIT_USER" -p="$GIT_PASS"
     - "docker build -t d-dashboard:build ."
-    - "docker tag d-dashboard:build jc6482/d-dashboard:latest"
-    - "docker push jc6482/d-dashboard:latest"
-    - "docker rmi -f d-dashboard:build jc6482/d-dashboard:latest || true"
+    - "docker tag d-dashboard:build jc6482/d-dashboard:latest_dev"
+    - "docker push jc6482/d-dashboard:latest_dev"
+    - "docker rmi -f d-dashboard:build jc6482/d-dashboard:latest_dev || true"
     - docker logout
 
 sonar_scan:
