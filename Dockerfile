@@ -13,4 +13,4 @@ RUN chmod +x /opt/D-Dashboard/bin/* \
     && gem install bundler --conservative \
     && /opt/D-Dashboard/bin/bundle install
 
-#ENTRYPOINT [ "sh", "-c", "/opt/D-Dashboard/bin/rails s -e ${RAILS_ENVIRONMENT}" ]
+ENTRYPOINT [ "sh", "-c", "/opt/D-Dashboard/bin/rails s -e ${RAILS_ENVIRONMENT}" ]
