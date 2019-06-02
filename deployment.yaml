@@ -7,26 +7,38 @@ metadata:
     run: d-dashboard
     namespace: tos
 spec:
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
         run: d-dashboard
         namespace: tos
     spec:
+      volumes:
+      - name: d-dashboard-secrets
+        secret:
+          secretName: d-dashboard-secret-mount
       containers:
       - name: d-dashboard
         image: jc6482/d-dashboard:latest_dev
+        env:
+          - name: RAILS_ENVIRONMENT
+            value: production
         imagePullPolicy: Always 
         ports:
         - containerPort: 3000
+        volumeMounts:
+        - mountPath: "/opt/D-Dashboard/.env"
+          subPath: ".env"
+          readOnly: true
+          name: d-dashboard-secrets
         resources:
           requests:
             memory: "100Mi"
             cpu: "100m"
           limits:
-            memory: "250Mi"
-            cpu: "250m"
+            memory: "200Mi"
+            cpu: "200m"
         livenessProbe:
           httpGet:
             path: /healthz

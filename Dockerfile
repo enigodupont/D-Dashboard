@@ -2,12 +2,15 @@ FROM ruby:2.3-alpine3.7
 
 COPY . /opt/D-Dashboard
 
-RUN chmod +x /opt/D-Dashboard/bin/* \
-    && apk add --no-cache nodejs build-base postgresql-dev sqlite-dev tzdata \
-    && /opt/D-Dashboard/bin/setup
+WORKDIR /opt/D-Dashboard
 
 EXPOSE 3000
 
-WORKDIR /opt/D-Dashboard
+ENV RAILS_ENVIRONMENT development
 
-ENTRYPOINT [ "sh", "-c", "bin/rails s" ]
+RUN chmod +x /opt/D-Dashboard/bin/* \
+    && apk add --no-cache nodejs build-base postgresql-dev sqlite-dev tzdata postgresql-dev\
+    && gem install bundler --conservative \
+    && /opt/D-Dashboard/bin/bundle install
+
+#ENTRYPOINT [ "sh", "-c", "/opt/D-Dashboard/bin/rails s -e ${RAILS_ENVIRONMENT}" ]

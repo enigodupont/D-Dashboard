@@ -14,7 +14,7 @@ class QuestLoggerController < ApplicationController
     end
 
     def newQuestLog
-       @qlog = QuestLog(:) 
+       #@qlog = QuestLog(:) 
     end
 
 
