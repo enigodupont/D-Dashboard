@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Item</title>
+    <%= render :partial => "dashboard/include" %>
+  </head>
+
+  <body class="bg-dark">
+    <%= render :partial => "dashboard/nav" %>
+    <div class='container text-white'>
+        <h1> Add an Item </h1>
+    <%= form_for(:inventory, url: {:controller => 'inventory', :action => 'create_item'}) do |f| %>
+        <div class="form-group">
+          <label for="name">Item Name</label>
+          <input class="form-control" type="text" name="inventory[itemName]" id="itemName" placeholder="Enter name">
+          <label for="name">Item Weight</label>
+          <input class="form-control" type='number' value='0' name="inventory[weight]" id="weight">
+          <input class="form-control" type='hidden' value='<%= params[:bag_id] %>' name="inventory[bag_id]" id="bag_id">
+        </div>
+        <input class="btn btn-primary" type="submit" name="commit" value="Create" data-disable-with="Create">
+    <% end %>
+    <% if @item.errors.any? %>
+    <ul class="Signup_Errors">
+    <% for message_error in @item.errors.full_messages %>
+      <li>* <%= message_error %></li>
+    <% end %>
+    </ul>
+  <% end %>
+  </body>
+</html>
+

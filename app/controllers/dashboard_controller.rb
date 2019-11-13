@@ -1,10 +1,10 @@
 class DashboardController < ApplicationController
   def index
-    
+    # Empty since it leads to the simple index page.
   end
 
   def aboutus
-    
+    # Empty since it leads to the simple about us page.
   end
 
   

@@ -1,20 +1,21 @@
 class QuestLoggerController < ApplicationController
-   def QLOG 
+   def quest_log 
         if session[:user].nil? or session[:user]['username'].nil?
             redirect_to '/user/login'
         end
 
-        @qlog = QuestLog.where(user_id: session[:user]['user_id'])
+        @quest_log = QuestLog.where(user_id: session[:user]['user_id'])
 
-        if @qlog.nil?
+        if @quest_log.nil?
             render "newQuestLog"
         else
             render "showQuestLog"
         end
     end
 
-    def newQuestLog
-       #@qlog = QuestLog(:) 
+    def new_quest_log
+       # Empty until we make this functional
+       #@quest_log = QuestLog(:) 
     end
 
 

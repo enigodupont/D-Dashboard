@@ -10,8 +10,8 @@ ENV RAILS_ENVIRONMENT development
 
 RUN chmod +x /opt/D-Dashboard/bin/* \
     && apk add --no-cache nodejs build-base postgresql-dev sqlite-dev tzdata postgresql-dev\
-    && gem install bundler --conservative \
+    && gem install bundler --conservative -v 2.0.2 \
     && /opt/D-Dashboard/bin/bundle install \
     && /opt/D-Dashboard/bin/rake assets:precompile
 
-ENTRYPOINT [ "sh", "-c", "/opt/D-Dashboard/bin/rails s -e ${RAILS_ENVIRONMENT}" ]
+ENTRYPOINT [ "sh", "-c", "/opt/D-Dashboard/entrypoint.sh" ]

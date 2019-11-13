@@ -1,16 +1,28 @@
+stages:
+  - build
+  - scan
+  - deploy
+
 build_image:
+  stage: build
   script:
-    - docker login -u="$GIT_USER" -p="$GIT_PASS"
+    - "docker login -u=$GIT_USER -p=$GIT_PASS"
     - "docker build -t d-dashboard:build ."
     - "docker tag d-dashboard:build jc6482/d-dashboard:latest_dev"
+    - "docker tag d-dashboard:build jc6482/d-dashboard:$CI_COMMIT_SHORT_SHA"
     - "docker push jc6482/d-dashboard:latest_dev"
-    - "docker rmi -f d-dashboard:build jc6482/d-dashboard:latest_dev || true"
-    - docker logout
+    - "docker push jc6482/d-dashboard:$CI_COMMIT_SHORT_SHA"
+    - "docker rmi -f d-dashboard:build jc6482/d-dashboard:latest_dev jc6482/d-dashboard:$CI_COMMIT_SHORT_SHA  || true"
+    - "docker images"
+    - "docker logout"
 
 sonar_scan:
+  stage: scan
   script:
-    - /opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=D-DASH -Dsonar.sources=. -Dsonar.host.url=http://10.64.0.5:30900 -Dsonar.login=$SONAR_TOKEN
+    - "/opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=D-DASH -Dsonar.sources=. -Dsonar.host.url=http://10.64.0.5:30900 -Dsonar.login=$SONAR_TOKEN"
 
 kube_deploy:
+  stage: deploy
   script:
+    - sed "s/\$\$PLEASE_CHANGE_ME/'$(date)'/g" -i deployment.yaml
     - /usr/bin/kubectl apply --validate=true --filename=deployment.yaml

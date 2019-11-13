@@ -1,9 +1,9 @@
 module RandomGeneratorHelper
 
-    def pick_random_line(filePath,num=1)
+    def pick_random_line(file_path,num=1)
 
         chosen_lines = Array.new(num)
-        File.foreach(filePath).each_with_index do |line, number|
+        File.foreach(file_path).each_with_index do |line, number|
           chosen_lines.each_index {|x| chosen_lines[x] = line if rand < 1.0/(number+1) }
         end
 
@@ -14,7 +14,7 @@ module RandomGeneratorHelper
         end
     end
 
-    def getAlignment()
+    def get_alignment()
 
       a1 = ["Lawful","Neutral","Chaotic"]
       a2 = ["Good","Neutral","Evil"]

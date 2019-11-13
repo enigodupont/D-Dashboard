@@ -1,5 +1,5 @@
 module UtilityHelper
-    def createRoller(value, mod)
+    def create_roller(value, mod)
         html = "<tr>"
         html += "  <td> <input value='1'/> </td>"
         html += "  <td> d </td>"
@@ -11,7 +11,7 @@ module UtilityHelper
     end
 
 
-    def checkLogin
+    def check_login
         if session.nil? or session[:user].nil? or session[:user]['username'].nil?
             redirect_to '/users/login'
             return false

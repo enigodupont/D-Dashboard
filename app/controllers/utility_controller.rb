@@ -1,10 +1,10 @@
 class UtilityController < ApplicationController
-    def diceRoller
+    def dice_roller
         @maxModifier = 20
     end
 
-    def levelCalculator
-        
+    def level_calculator
+        # No custom code necessary
     end
 
 end

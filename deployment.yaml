@@ -37,6 +37,8 @@ spec:
         env:
           - name: RAILS_ENVIRONMENT
             value: production
+          - name: DATE
+            value: $$PLEASE_CHANGE_ME
         imagePullPolicy: Always 
         ports:
         - containerPort: 3000
