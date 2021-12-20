@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def createLogin
+  def create_login
     @user = User.find_by(username: user_params[:username])
     if @user.present? && @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   end
 
-  def destroyLogin
+  def destroy_login
     session[:user_id] = nil
     session[:user] = nil
     redirect_to root_url

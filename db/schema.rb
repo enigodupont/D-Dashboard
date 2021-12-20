@@ -12,6 +12,14 @@
 
 ActiveRecord::Schema.define(version: 20180108061815) do
 
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "bag_of_holdings", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
@@ -36,14 +44,6 @@ ActiveRecord::Schema.define(version: 20180108061815) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dm_id"], name: "index_quest_logs_on_dm_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

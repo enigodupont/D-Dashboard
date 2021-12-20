@@ -9,7 +9,7 @@
     <%= render :partial => "dashboard/nav" %>
       <div class='container text-white'>
             <h1>Login</h1>
-            <%= form_for(:user, url: {:controller => 'users', :action => 'createLogin'}) do |f| %>
+            <%= form_for(:user, url: {:controller => 'users', :action => 'create_login'}) do |f| %>
               <div class="form-group">
                 <label for="user_username">Username</label>
                 <input class="form-control" type="text" name="user[username]" id="user_username" placeholder="Enter username">

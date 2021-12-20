@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bag of Holding</title>
+    <%= render :partial => "dashboard/include" %>
+  </head>
+
+  <body class="bg-dark">
+    <%= render :partial => "dashboard/nav" %>
+    <div class='container text-white'>
+        <h1> Log Quest </h1>
+    <%= form_for(:quest_log, url: {:controller => 'quest_logger', :action => 'new_quest_log'}) do |f| %> <!-- look up form_for -->
+        <div class="form-group">
+          <label for="title">Quest Log Title</label>
+          <input class="form-control" type="text" name="quest_log[title]" id="title" placeholder="Enter title">
+          <input class="form-control" type="text" name="quest_log[log]" id="log" placeholder="Enter log">
+        </div>
+        <input class="btn btn-primary" type="submit" name="commit" value="Create" data-disable-with="Create">
+    <% end %>
+    <% if @quest_log.errors.any? %>
+    <ul class="Signup_Errors">
+    <% for message_error in @quest_log.errors.full_messages %>
+      <li>* <%= message_error %></li>
+    <% end %>
+    </ul>
+  <% end %>
+  </body>
+</html>

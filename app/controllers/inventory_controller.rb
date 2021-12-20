@@ -1,114 +1,119 @@
 class InventoryController < ApplicationController
     include  UtilityHelper
 
-    def BOH
+    def bag_of_holding
         
-        if !checkLogin()
+        if !check_login()
             return
         end
         
-        @bohs = BagOfHolding.where(user_id: session[:user]['id'])
+        @bags = BagOfHolding.where(user_id: session[:user]['id'])
 
-        if @bohs.nil?
-            render "newBOH"
+        if @bags.nil?
+            render "new_bag_of_holding"
         else
-            #Render the page with multiple BOH Selections
-            render "showBOHs"
+            render "show_bags_of_holding"
         end
     end
 
-    def newBOH
-        @boh = BagOfHolding.new
+    def new_bag_of_holding
+        @bag = BagOfHolding.new
     end
 
-    def showBOHs
-        if !checkLogin()
+    def show_bags_of_holding
+        if !check_login()
             return
         end
 
-        if @bohs.nil?
+        if @bags.nil?
             redirect_to root_url
         end       
     end
     
-    def createBOH
-        if !checkLogin()
+    def create_bag_of_holding
+        if !check_login()
             return
         end
-        @boh = BagOfHolding.new(bag_params.merge(:user_id => session[:user]['id']))
-        if @boh.save
-          redirect_to "/inventory/BOH"
+        @bag = BagOfHolding.new(bag_params.merge(:user_id => session[:user]['id']))
+        if @bag.save
+          redirect_to "/inventory/bag_of_holding"
         else
           flash[:notice] = "Bag Creation Failed"
           flash[:color] = "text-danger"
-          render "newBOH"
+          render "new_bag_of_holding"
         end
     end
 
-    def deleteBOH
-        if !checkLogin()
+    def delete_bag_of_holding
+        if !check_login()
             return
         end
-        
-        deletedBags = BagOfHolding.delete(params['id'])
 
-        if deletedBags < 1
-            flash[:notice] = "Bag Deletion Failed"
+        # Temp check for items to ignore failure
+        inventory = Inventory.where(bag_id: params['id'])
+        if inventory.length > 0 
+            flash[:notice] = "Bag Deletion Failed, items are still present. We will fix this later :P"
             flash[:color] = "text-danger"
         else
-            flash[:notice] = "Bag Deletion Complete"
-            flash[:color] = "text-success"
+            deleted_bags = BagOfHolding.delete(params['id'])
+
+            if deleted_bags < 1
+                flash[:notice] = "Bag Deletion Failed"
+                flash[:color] = "text-danger"
+            else
+                flash[:notice] = "Bag Deletion Complete"
+                flash[:color] = "text-success"
+            end
         end
 
-
-        self.BOH
+        self.bag_of_holding
         return
     end
 
-    def showInventory
-        if !checkLogin()
+    def show_inventory
+        if !check_login()
             return
         end
         if params[:id].nil?
-            redirect_to "/inventory/BOH"
+            redirect_to "/inventory/bag_of_holding"
         end
         
-        boh = BagOfHolding.where(user_id: session[:user]['id'], id: params[:id])
+        bags = BagOfHolding.where(user_id: session[:user]['id'], id: params[:id])
 
-        if boh.nil? or boh[0].nil?
+        if bags.nil? or bags[0].nil?
             flash[:notice] = "Could not find bag!"
             flash[:color] = "text-danger"
-            self.BOH
+            self.bag_of_holding
             return
         end
 
-        @title = boh[0]['name']
-        @BOHID = boh[0]['id']
-        @inventory = Inventory.where(bag_id: boh[0]['id'])
+        @title = bags[0]['name']
+        @id = bags[0]['id']
+        @inventory = Inventory.where(bag_id: bags[0]['id'])
     end
 
-    def newItem
+    def new_item
         @item = Inventory.new
     end
         
-    def createItem
-        if !checkLogin()
+    def create_item
+        if !check_login()
             return
         end
         @item = Inventory.new(item_params)
         if @item.save
             params['id'] = item_params['bag_id']
-            self.showInventory
-            render "showInventory"
+            self.show_inventory
+            render "show_inventory"
         else
             flash[:notice] = "Item Failed"
             flash[:color] = "text-danger"
-          render :action => "newItem", :bohid => params[:bohid]
+            render "show_inventory"
         end
     end
 
-    def deleteItem
-        if !checkLogin()
+    def delete_item
+        if !check_login()
             return
         end
         
@@ -124,8 +129,8 @@ class InventoryController < ApplicationController
 
         #I should probably just make the params cleaner, but for now this is what it do
         params['id'] = params['bag_id']
-        self.showInventory
-        render "showInventory"
+        self.show_inventory
+        render "show_inventory"
     end
 
   private
