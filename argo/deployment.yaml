@@ -6,7 +6,7 @@ metadata:
     run: d-dashboard
 spec:
   # Removing as it's controlled by HPA and interrupts ARGO
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       run: d-dashboard
