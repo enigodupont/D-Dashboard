@@ -1,4 +1,4 @@
-FROM ruby:2.7-alpine3.15
+FROM ruby:3.1.2-alpine
 
 COPY . /opt/D-Dashboard
 
@@ -10,7 +10,7 @@ ENV RAILS_ENVIRONMENT development
 
 RUN chmod +x /opt/D-Dashboard/bin/* \
     && apk add --no-cache nodejs build-base postgresql-dev sqlite-dev tzdata postgresql-dev\
-    && gem install bundler --conservative -v 2.2.3 \
+    && gem install bundler --conservative -v 2.3.7 \
     && /opt/D-Dashboard/bin/bundle install \
     && /opt/D-Dashboard/bin/rake assets:precompile
 
