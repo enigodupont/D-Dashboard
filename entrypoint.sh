@@ -7,6 +7,7 @@ then
   /opt/D-Dashboard/bin/rails db:migrate RAILS_ENV="${RAILS_ENVIRONMENT}"
 else
   echo "No migrate necessary"
+  /opt/D-Dashboard/bin/rake assets:precompile
 fi
 echo "--------------------------------------------------------------------------------"
 
