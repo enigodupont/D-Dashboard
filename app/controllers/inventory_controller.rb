@@ -117,9 +117,9 @@ class InventoryController < ApplicationController
             return
         end
         
-        deletedBags = Inventory.delete(params['id'])
+        deleted_bags = Inventory.delete(params['id'])
 
-        if deletedBags < 1
+        if deleted_bags < 1
             flash[:notice] = "Item Failed"
             flash[:color] = "text-danger"
         else

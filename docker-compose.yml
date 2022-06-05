@@ -15,9 +15,13 @@ services:
     ports:
       - "3000:3000"
     environment:
-      RAILS_ENVIRONMENT: development
+      # Enable for prod testing
+      #RAILS_ENVIRONMENT: production
+      #SECRET_KEY_BASE: fake_prod_key_for_testing
       DB_DATABASE: ddash
       DB_USER: postgres
       DB_PASS: postgres
       DB_HOST: postgres
       DB_PORT: 5432
+      RAILS_SERVE_STATIC_FILES: true
+      RAILS_LOG_TO_STDOUT: true
