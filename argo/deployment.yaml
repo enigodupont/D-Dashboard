@@ -34,7 +34,7 @@ spec:
           secretName: d-dashboard-secret-mount
       containers:
       - name: d-dashboard
-        image: enigodupont/d-dashboard:default_tag_change_me
+        image: enigodupont/d-dashboard:70
         env:
           - name: RAILS_ENVIRONMENT
             value: production
