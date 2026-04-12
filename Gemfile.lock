@@ -62,7 +62,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
-    bcrypt (3.1.18)
+    bcrypt (3.1.22)
     bindex (0.8.1)
     builder (3.2.4)
     byebug (11.1.3)
