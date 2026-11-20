@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+#apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: d-dashboard
@@ -80,17 +80,16 @@ spec:
       targetPort: 3000
   type: ClusterIP
 ---
-kind: Ingress
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: d-dashboard 
-spec:
-  rules:
-    - host: dndashboard.eniworks.net
-      http:
-        paths:
-        - path: /
-          pathType: Prefix
+# kind: Ingress
+# apiVersion: networking.k8s.io/v1
+# metadata:
+#   name: d-dashboard 
+# spec:
+#   rules:
+#     - host: dndashboard.eniworks.net
+#       http:
+#         paths:
+#         - path: /\n          pathType: Prefix
           backend:
             service:
               name: d-dashboard
