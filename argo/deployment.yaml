@@ -80,22 +80,22 @@ spec:
       targetPort: 3000
   type: ClusterIP
 ---
-kind: Ingress
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: d-dashboard 
-spec:
-  rules:
-    - host: dndashboard.eniworks.net
-      http:
-        paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: d-dashboard
-              port:
-                number: 3000
+#kind: Ingress
+#apiVersion: networking.k8s.io/v1
+#metadata:
+#  name: d-dashboard 
+#spec:
+#  rules:
+#    - host: dndashboard.eniworks.net
+#      http:
+#        paths:
+#        - path: /\
+#          pathType: Prefix
+#          backend:
+#            service:
+#              name: d-dashboard
+#              port:
+#                number: 3000
 ---
 #apiVersion: autoscaling/v2beta2
 #kind: HorizontalPodAutoscaler
